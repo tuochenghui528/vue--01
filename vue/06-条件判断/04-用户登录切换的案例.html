@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录切换的案例</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- label中的for和input中的id相对应后 点击label  input也会聚焦 -->
+        <span v-if='isUser'>
+            <label for="userName">用户登录</label>
+            <!-- input中的key是为了切换登录方法的时候将input也切换，这样就可以清空input中的输入值  如果不加key vue底层不会重新重建input而是在原来的input上修改不同的值  导致切换之前的输入值还在切换之后还存在 -->
+            <input type="text" placeholder="输入用户名" id="userName" key='userName'>
+        </span>
+        <span v-else>
+            <label for="email">邮箱登录</label>
+            <input type="text" placeholder="输入邮箱" id="email" key='email'>
+        </span>
+        <button @click='isUser=!isUser'>切换登录</button>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isUser: true
+            }
+        })
+    </script>
+</body>
+
+</html>

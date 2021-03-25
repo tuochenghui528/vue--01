@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind作业</title>
+</head>
+<style>
+    .redColor {
+        color: red;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='(item, index) in movies' :class='{"redColor": isActive == index}'@click='clickFun(index)'>{{index}}---{{item}}</li>
+        </ul>
+    </div> 
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['拼命', '赚钱', '工作', '学习'],
+                isActive: 0
+            },
+            methods: {
+                clickFun: function(index) {
+                    this.isActive = index;
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

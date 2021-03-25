@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js中的高阶函数</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                nums: [10, 30, 200, 40, 150, 55]
+            },
+            mounted() {
+                //filter/map/reduce函数
+                //filter中的回调函数有一个要求，必须返回一个boolean的值；
+                //true:当返回是true的时候，函数内部会自动将这次回调的n加入到新的数组中
+                //false:当返回是false的时候，函数内部会过滤这次的n
+
+
+                //需求：筛选出nums中小于100的数
+                let newNums = this.nums.filter(n => {
+                    return n<100;
+                })
+                console.log(newNums);
+                
+
+
+                //map函数是对数组的遍历并返回一个新的数组
+                let new2Nums = newNums.map(n => {
+                   return n * 2;
+                })
+                console.log(new2Nums)
+
+                //reduce函数是对数组的汇总
+                let total = new2Nums.reduce((preValue, n) => {
+                    return preValue + n;
+                },0);
+                console.log(total)
+            }
+        })
+    </script>
+</body>
+</html>

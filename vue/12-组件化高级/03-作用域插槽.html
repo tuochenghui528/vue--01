@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域插槽的基本使用</title>
+</head>
+<body>
+    <div id="app">
+        <my-com></my-com>
+        <!-- 父组件替换插槽的标签 但是内容由子组件来提供   父组件中要使用子组件的数据 通过插槽传值 -->
+        <my-com>
+            <template slot-scope='slot'>
+                <!-- <span v-for='item in slot.message'>{{item}}-</span> -->
+                <span>{{slot.message.join('-')}}</span>
+            </template>
+        </my-com>
+    </div>
+
+    <template id="myCom">
+        <div>
+            <ul>
+                <li v-for='item in pLanguages'>{{item}}</li>
+            </ul>
+            <!-- 用插槽包起俩 -->
+            <slot :message='pLanguages'>
+                <ul>
+                    <li v-for='item in pLanguages'>{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app =new Vue({
+            el: '#app',
+            components: {
+                'my-com': {
+                    template: '#myCom',
+                    data() {
+                        return {
+                            pLanguages: ['JavaScript', 'Java', 'C++', 'C#', 'Swift', 'Pyhon']
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

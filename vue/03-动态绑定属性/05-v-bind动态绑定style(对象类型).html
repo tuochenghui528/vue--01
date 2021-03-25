@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind动态绑定style(对象类型)</title>
+</head>
+<body>
+    <div id="app">
+        <div :style="{color: colorData}">{{message}}</div>
+        <button @click="clickFun">点击</button>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'v-bind动态绑定style(对象类型)',
+                colorData: 'red'
+            },
+            methods: {
+                clickFun: function() {
+                    this.colorData = this.colorData === 'red' ?  'blue' : 'red';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

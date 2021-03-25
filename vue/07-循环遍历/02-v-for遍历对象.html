@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for遍历对象</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 对象遍历  item是值  key是键  index是对象中的索引值 -->
+            <li v-for='(item, key, index) in obj'>{{index+1}}-{{key}}:{{item}}</li>
+        </ul>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                obj: {
+                    name: 'tuo',
+                    age: 18,
+                    height: 1.80
+                }
+            }
+        })
+    </script>
+</body>
+</html>

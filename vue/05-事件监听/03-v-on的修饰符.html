@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on的修饰符</title>
+</head>
+<body>
+    <div id="app">
+        <!-- .stop阻止冒泡事件 -->
+        <div @click='divClick'>
+            <button @click.stop='btnClick'>按钮1</button>
+        </div>
+        <!-- .prevent阻止默认事件 -->
+         <form action="baidu">
+             <input type="submit" value="提交" @click.prevent='submitClick'>
+         </form>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods: {
+                divClick() {
+                    console.log('divClick');
+                },
+                btnClick() {
+                    console.log('btnClick');
+                },
+                submitClick() {
+                    console.log(123)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

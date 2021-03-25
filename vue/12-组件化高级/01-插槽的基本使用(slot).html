@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽的基本使用slot</title>
+</head>
+<body>
+    <!-- 插槽使用与组件复用  可以通过插槽来修改组件的不同部分 保留相同部分 -->
+    <!-- 插槽里也可以有默认值 也可以插入多个元素  都会显示 -->
+    <div id="app">
+        <my-com><button>按钮</button></my-com>
+        <my-com><span>我是span</span></my-com>
+        <my-com><p>我是p</p></my-com>
+        <my-com></my-com>
+        <my-com></my-com>
+        <my-com></my-com>
+    </div>
+    <template id="myCom">
+        <div>
+            <h2>我是子组件</h2>
+
+            <!-- 没有默认值 -->
+            <slot></slot> 
+             <!--有默认值的时候  如过使用的时候不插入 就显示默认值  -->
+            <slot><button>按钮</button></slot> 
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'my-com': {
+                    template: '#myCom'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

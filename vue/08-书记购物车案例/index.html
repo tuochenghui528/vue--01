@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>书籍购物车案例</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if='books.length > 0'>
+            <table border="1" align='center' cellspacing='0' width='50%'>
+                <thead align='center'>
+                    <tr>
+                        <th></th>
+                        <th>书籍名称</th>
+                        <th>出版日期</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody align='center'>
+                    <tr v-for='(item, index) in books'>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.price | showPrice}}</td>
+                        <td>
+                            <button @click='jianFun(index)' :disabled='item.count===0'>-</button>
+                            {{item.count}}
+                            <button @click='addFun(index)'>+</button>
+                        </td>
+                        <td>
+                            <button @click='deleteFun(index)'>移除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>{{totalPriceFun | showPrice}}</h2>
+        </div>
+        <h2 v-else>购物车为空</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

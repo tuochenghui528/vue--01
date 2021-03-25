@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性得setter和getter</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{fullName}}</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'Kobe',
+                lastName: 'Bryant'
+            },
+            computed: {
+                //计算属性得最终写法（简写）
+                // fullName: function() {
+                //     return this.firstName+ ' ' +this.lastName
+                // }
+                //计算属性得实际写法(里边有get方法)
+                // fullName: {
+                //     get: function() {
+                //         return this.firstName+ ' ' +this.lastName
+                //     }
+                // }
+                //完整得计算属性写法
+                fullName: {
+                    set: function() {
+                        //一般不设置值                                                  
+                    },
+                    get: function() {
+                        return this.firstName+ ' ' +this.lastName
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局组件和局部组件</title>
+</head>
+
+<body>
+    <!-- 第一个vue实例 -->
+    <div id="app">
+        <my-con></my-con>
+        <mycom></mycom>
+    </div>
+    <div id="app2">
+        <my-con></my-con>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        //1.通过组件构造器来创建组件
+        const createCom = Vue.extend({
+            template: `
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容，我是全局注册组件</p>
+                </div>
+            `
+        })
+        //2.注册组件(全局组件  意味着注册完的组件在任何一个vue实例都可以使用)
+        Vue.component('my-con', createCom)
+        const app = new Vue({
+            el: '#app',
+            components: {
+                //局部注册组件
+                mycom: createCom
+            }
+        })
+
+        const app2 = new Vue({
+            el: '#app2'
+        })
+    </script>
+</body>
+
+</html>

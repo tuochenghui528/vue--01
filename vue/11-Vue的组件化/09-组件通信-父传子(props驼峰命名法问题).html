@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props的驼峰命名法</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如果是驼峰命名法   就应该用-拼接显示 -->
+        <my-com :c-info='info'></my-com>
+    </div>
+    <template id="mycom">
+        <div>
+            <h2>水水水水</h2>
+            <h3>{{cInfo}}</h3>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                info: {
+                    name: 'kobe',
+                    age: 18,
+                    height: 1.95
+                }
+            },
+            components: {
+                'my-com': {
+                    template: '#mycom',
+                    props: {
+                        cInfo: {
+                            type: Object,
+                            default() {
+                                return {}
+                            }
+                        }
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

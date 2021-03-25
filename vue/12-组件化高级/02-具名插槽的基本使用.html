@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>具名插槽的基本使用</title>
+</head>
+<body>
+    <div id="app">
+        <my-com>
+            <!-- 具名插槽的使用  指定某一个特定的插槽 -->
+            <button slot='center'>按钮</button>
+        </my-com>
+    </div>
+
+    <template id="myCom">
+        <div>
+            <h2>我是子组件</h2>
+            <slot name='left'>左边</slot>    
+            <slot name='center'>中间</slot>  
+            <slot name='right'>右边</slot> 
+            <slot></slot>  
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'my-com': {
+                    template: '#myCom'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model结合checkbox的使用</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 单选模式 -->
+        <label for="accept">
+            <input type="checkbox" id="accept" v-model='isAccept'>同意协议
+        </label>
+        <h2>{{isAccept}}</h2>
+        <button :disabled='!isAccept'>下一步</button>
+        <br>
+        <br>
+
+
+        <!-- 多选模式 -->
+        <input type="checkbox" value='篮球' v-model='isArray'>篮球
+        <input type="checkbox" value="足球" v-model='isArray'>足球
+        <input type="checkbox" value="排球" v-model='isArray'>排球
+        <input type="checkbox" value="乒乓球" v-model='isArray'>乒乓球
+        <h2>{{isArray}}</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isAccept: false,//单选的时候是boolean类型
+                isArray: []//多选的时候是数组类型
+            }
+        })
+    </script>
+</body>
+</html>

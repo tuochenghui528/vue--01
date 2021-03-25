@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计数器</title>
+</head>
+<body>
+    <div id="app">
+        <h1>计数器：{{counter}}</h1>
+        <button v-on:click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+    <script src="../vueJs//vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+            methods: {
+                add: function () {
+                    this.counter++;
+                },
+                sub() {
+                   this.counter--;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

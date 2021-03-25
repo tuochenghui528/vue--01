@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustache语法</title>
+</head>
+<body>
+    <!-- Mustache语法不仅仅可以显示变量，还可以展示表达式 -->
+    <div id="app">
+        <h1>{{message}}</h1>
+        <h2>{{firstName + lastName}}</h2>
+        <h2>{{firstName}} {{lastName}}</h2>
+        <h2>{{counter * 2}}</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好 Mustache语法（花括号语法）',
+                firstName: 'kobe',
+                lastName: 'broan',
+                counter: 100
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak指令</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
+<body>
+    <div id="app" v-cloak>
+        <h2>{{message}}</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'v-cloak是斗篷的意思， 就是在加载页面的时候当加载到mustache语法的时候在去加载js，这时候就会出现乱码闪现，可以先用v-cloak'
+            }
+        });
+    </script>
+</body>
+
+</html>

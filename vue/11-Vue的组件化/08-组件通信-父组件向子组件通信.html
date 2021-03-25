@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父组件向子组件通信</title>
+</head>
+<body>
+    <!-- 父传子是用props  子组件通过props来接收父组件传的值的 -->
+    <div id="app">
+        <my-com :cmovies='movies' :cmessage='message'></my-com>
+    </div>
+    <template id="mycom">
+        <div>
+            <h2>我是子组件</h2>
+            <ul>
+                <li v-for=' item in cmovies'>{{item}}</li>
+            </ul>
+            <h3>{{cmessage}}</h3>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        Vue.component('my-com', {
+            template: '#mycom',
+            data() {
+                return {}
+            },
+            // props: ['cmovies', 'cmessage']   //可以是数组
+
+            // 类型限制
+            // props: {
+            //     //cmessage: String, //类型限制
+            //     //cmovies: Array  //类型限制
+            // }
+            
+            // 提供一些默认值  或者必传项
+            // props: {
+            //     cmessage: {
+            //         type: String,
+            //         default: '我是子组件默认的message',
+            //         required: true
+            //     } 
+            // }
+            
+                //当类型是数组或者对象的时候  默认值必须是一个函数
+            props: {
+                cmovies: {
+                    type: Array,
+                    default() {
+                        return []
+                    }
+                }
+
+            }
+
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['海王', '海贼王', '海尔兄弟'],
+                message: '我是父组件message'
+            }
+        })
+    </script>
+</body>
+</html>

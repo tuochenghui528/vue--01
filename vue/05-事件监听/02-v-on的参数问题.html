@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on的参数问题</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 定义好的事件里如果没有参数加不加小括号都可以 -->
+        <button @click="bt1Click">按钮1</button>
+        <!-- 定义好的事件里有参数如果没有传参，则默认显示浏览器生成的event事件 -->
+        <button @click="bt2Click">按钮2</button>
+        <!-- 定义好的事件里传参并且参数包含event事件 -->
+        <button @click="bt3Click('abc', $event)">按钮3</button>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                bt1Click() {
+                    console.log('btl')
+                },
+                bt2Click(event) {
+                    console.log(event);
+                },
+                bt3Click(abc, event) {
+                    console.log(abc, event);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

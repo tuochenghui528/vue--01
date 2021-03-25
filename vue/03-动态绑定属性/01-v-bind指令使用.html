@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind指令属性动态绑定</title>
+</head>
+<body>
+    <!-- v-bind语法糖 可以直接写成: -->
+    <div id="app">
+        <img v-bind:src="imgUrl" alt="">
+        <img :src="imgUrl" alt="">
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'v-bind可以动态绑定属性',
+                imgUrl: 'https://i0.hdslb.com/bfs/archive/eaa1628a83ee98d7611ac0b13aa1798ab9c425f5.jpg@880w_388h_1c_95q'
+            }
+        });
+    </script>
+</body>
+</html>

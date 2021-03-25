@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-show与v-if的区别</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if 消失后会把DOM也删除  v-if消失后只是display:none -->
+        <!-- 如果频繁的点击消失出现的话用v-show   一次就用v-if -->
+        <h2 v-if='true'>vi-if</h2>
+        <h2 v-show='true'>v-show</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+</html>

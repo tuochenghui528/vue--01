@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册组的语法糖</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-com></my-com>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        //1.全局注册的语法糖写法
+        // const creatCom = Vue.extend({
+        //     template: `
+        //         <div>
+        //             <h2>我是全局注册的标题</h2>
+        //             <p>我是全局注册的内容</p>    
+        //         </div>
+        //     `
+        // })
+        // Vue.component('my-com',creatCom);
+        //语法糖注册(即时创建  也是注册)
+        // Vue.component('my-com', {
+        //     template: `
+        //         <div>
+        //             <h2>我是全局注册的标题</h2>
+        //             <p>我是全局注册的内容</p>    
+        //         </div>
+        //     `
+        // })
+        const app = new Vue({
+            el: '#app',
+            components: {
+                'my-com': {
+                    template: `
+                <div>
+                    <h2>我是局部注册的标题</h2>
+                    <p>我是局部注册的内容</p>    
+                </div>
+            `
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

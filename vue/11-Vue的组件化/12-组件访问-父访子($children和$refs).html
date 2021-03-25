@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父访子 $children $refs</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-com></my-com>
+        <my-com ref='aaa'></my-com>
+        <my-com></my-com>
+        <button @click='btnClick'>按钮</button>
+    </div>
+    <template id="myCom">
+        <div>
+            <h2>我是子组件</h2>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            methods: {
+                btnClick() {
+                    //$children
+                    console.log(this.$children)  //[VueComponent]  如果是多个子组件的话是[VueComponent,VueComponent,VueComponent]
+                    this.$children[0].showMessage() //我是子组件的showmessage
+
+                    //$refs
+                    console.log(this.$refs) //{}
+                    console.log(this.$refs.aaa.showMessage())  //$refs能确切的找到子组件  $children只能通过下标找 如果有插入子组件  下标就会变
+                }
+            },
+            components: {
+                'my-com': {
+                    template: '#myCom',
+                    methods: {
+                        showMessage() {
+                            console.log('我是子组件的showmessage')
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model的修饰符</title>
+</head>
+<body>
+    <div id="app">
+        <!-- .lazy  不是实时的绑定  当输完后敲回车或者失去焦点的时候出发 -->
+        <label for="lazy">
+            <input type="text" v-model.lazy='message'>lazy
+        </label>
+        <h2>{{message}}</h2>
+
+        <!-- number  当input为number的时候 双向绑定拿到的默认为字符串的数字 加。number转为数字 -->
+        <label for="number">
+            <input type="number" v-model.number='age'>
+            <h2>{{age}}-{{typeof age}}</h2>
+        </label>
+
+        <!-- trim 去掉两边的空格 -->
+        <label for="trim">
+            <input type="text" v-model.trim='message'>
+        </label>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                age: 0
+            }
+        })
+    </script>
+</body>
+</html>

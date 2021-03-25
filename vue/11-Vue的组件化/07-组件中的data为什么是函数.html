@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件中的data为什么是函数</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 公用一个data  但是点击事件互不影响  原因是data是函数  return有对象  每次调用data函数的时候都会return新的对象  堆内存在变 -->
+        <my-com></my-com>
+        <my-com></my-com>
+        <my-com></my-com>
+    </div>
+    <template id="myCom">
+        <div>
+            <h2>当前的计数是：{{counter}}</h2>
+            <button @click='increment'>+</button>
+            <button @click='decrement'>-</button>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        //如果想要相互影响的效果可以这样定义
+        // obj = {
+        //     name: 'kobe',
+        //     age: 18
+        // }
+        //注册组件
+        Vue.component('my-com', {
+            template: '#myCom',
+            data() {
+                return {
+                    counter: 0
+                }
+                // return obj 这样定义就会相互影响  应为堆内存没变
+            },
+            methods: {
+                increment() {
+                    this.counter++
+                },
+                decrement() {
+                    this.counter--
+                }
+            }
+        })
+        const app = new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

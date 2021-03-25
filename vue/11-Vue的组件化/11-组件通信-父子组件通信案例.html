@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父子组件通信案例</title>
+</head>
+<body>
+    <div id="app">
+        <h2>data:{{num1}}</h2>
+        <h2>data:{{num2}}</h2>
+        <my-com :number1='num1' :number2='num2' @changenum1='changeNum1' @changenum2='changeNum2'></my-com>
+    </div>
+    <template id="myCom">
+        <div>
+            <h2>props: {{number1}}</h2>
+            <!-- <input type="text" v-model='number1'> -->
+            <input type="text" :value="cnumber1" @input='changeNumber1'>
+            <h2>props: {{number2}}</h2>
+            <!-- <input type="text" v-model='number2'> -->
+            <input type="text" :value="cnumber2" @input='changeNumber2'>
+        </div>
+    </template>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: 0,
+                num2: 1
+            },
+            methods: {
+                changeNum1(value) {
+                    console.log(value)
+                    this.num1 = Number(value);
+                },
+                changeNum2(value) {
+                    this.num2 = Number(value);
+                }
+            },
+            components: {
+                'my-com': {
+                    template: '#myCom',
+                    props: {
+                        number1: Number,
+                        number2: Number
+                    },
+                    data() {
+                        return {
+                            cnumber1: this.number1,
+                            cnumber2: this.number2
+                        }
+                    },
+                    methods: {
+                        changeNumber1(e) {
+                            this.cnumber1 = e.target.value;
+                            this.$emit('changenum1', this.cnumber1);
+                        },
+                        changeNumber2(e) {
+                            this.cnumber2 = e.target.value;
+                            this.$emit('changenum2', this.cnumber2)
+                        }
+                    },
+                    watch: {
+                        cnumber1(newValue, oldValue) {
+                            console.log(newValue, oldValue)   //可以使用v-model双向绑定加watch监听事件来实现
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

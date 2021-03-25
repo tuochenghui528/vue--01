@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-on的基本使用</title>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body>
+    <div id="app" v-cloak>
+        <!-- v-on的语法糖  可以直接写成@ -->
+        <h2>{{counter}}</h2>
+        <!-- 在事件监听中 如果调用的方法不需要参数（）可以省略 -->
+        <button v-on:click="increment()">+</button>
+        <button @click="decrement">-</button>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                counter: 0
+            },
+            methods: {
+                increment() {
+                    this.counter++;
+                },
+                decrement() {
+                    this.counter--;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

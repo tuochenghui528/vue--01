@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组中的哪些方法是响应式的</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for='item in leteers'>{{item}}</div>
+        <button @click='btnClick'>按钮</button>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+               leteers: ['a', 'b', 'c', 'd'] 
+            },
+            methods: {
+                btnClick() {
+                    //push方法
+                    // this.leteers.push('e'); 可以成响应式
+                    // this.leteers.unshift('aaa'); 可以是响应式  从头上添加
+                    // this.leteers.pop(); 可以是响应式  从尾部删除
+                    // this.leteers.shift(); 可以式响应式  从头部删除
+                    //splice作用：删除元素/插入元素/替换元素
+                    //删除元素：第二个参数传入你要删除几个元素（如果没有传就删除后面的所有的元素）
+                    //替换元素：第二个参数是表示我们要替换几个元素，后面的参数是用于替换前面的元素
+                    //插入元素：第二和元素是0，后面的参数是插入的元素
+                    // this.leteers.splice(2, 0); 第一个是删除的起始位置，第二个元素是删除的个数
+                    // this.leteers.splice(1,3,'m','n','l');//替换
+                    // this.leteers.splice(1,0,'x','y','z');//插入
+                    // this.leteers.sort() 排序
+                    // this.leteers.reverse(); 反转
+
+                    //注意：通过索引值修改数组中的元素
+                    // this.leteers[0] = 'aaaa'; //点击没反应  不是响应式
+
+                    //set(要修改的对象, 索引值, 修改后的值)
+                    Vue.set(this.leteers, 0, 'aaaaa') //vue中的set方法   可以修改vue中的数据
+                }
+            }
+        })
+    </script>
+</body>
+</html>

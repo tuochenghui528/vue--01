@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model的基本使用与原理</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model的基本使用 -->
+        <!-- <input type="text" v-model='message'> -->
+        <!-- <h2>{{message}}</h2> -->
+
+
+        <!-- v-model的原理   input都有一个input事件 -->
+        <input type="text" v-bind:value='message'>
+        <input type="text" :value='message'>
+        <input type="text" v-on:input='inputChange'>
+        <input type="text" :value='message' @input='inputChange'> 
+
+        <!-- 不适用input方法  直接用表达式 -->
+        <input type="text" :value='message' @input='message = $event.target.value'> 
+        <h2>{{message}}</h2>
+    </div>
+    <script src="../vueJs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '哈哈哈哈'
+            },
+            methods: {
+                inputChange(e) {
+                    this.message = e.target.value
+                }
+            }
+        })
+    </script>
+</body>
+</html>
