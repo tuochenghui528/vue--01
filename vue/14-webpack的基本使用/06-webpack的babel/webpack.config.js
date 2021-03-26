@@ -1,10 +1,9 @@
-const path = require("path");
+const path = require('path')
 module.exports = {
-    entry: './src/main',
+    entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: 'dist/'//会将所有的url前面加dist
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -28,12 +27,20 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 14000, //如果图片小于这个值的话 图片会转成base64在浏览器显示
-                                        //如果大于limit的话就得配置file-loader  就会在dist文件下生成一个hash值的图片
-                            name: 'img/[name].[hash:8].[ext]'
+                            limit: 20000
                         }
                     }
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
         ]
     }
