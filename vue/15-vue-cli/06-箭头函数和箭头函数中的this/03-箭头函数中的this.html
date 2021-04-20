@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数中的this</title>
+</head>
+
+<body>
+    <script>
+        function abc() {
+            console.log(this);//window
+            setTimeout(function () {
+                console.log(this);//window
+            });
+            setTimeout(() => {
+                console.log(this);//window
+            })
+        };
+        objs = {
+            abc() {
+                console.log(this);//obj
+                setTimeout(function () {
+                    console.log(this);//window
+                });
+                setTimeout(() => {
+                    console.log(this);//obj
+                })
+            }
+        }
+        obj = {
+            abc() {
+                setTimeout(function () {
+                    setTimeout(()=>{
+                        console.log(this);//window
+                    })
+                });
+                setTimeout(() => {
+                    setTimeout(()=> {
+                        console.log(this);//obj
+                    })
+                })
+            }
+        }
+        abc();
+        objs.abc();
+        obj.abc();
+    </script>
+</body>
+
+</html>
