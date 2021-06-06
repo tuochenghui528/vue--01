@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise的基本使用</title>
+</head>
+<body>
+    <script>
+        //Promise对象代表一个异步操作，有三种状态：
+        // pending: 初始状态，不是成功或失败状态。
+        // fulfilled: 意味着操作成功完成。
+        // rejected: 意味着操作失败
+
+        new Promise((resolve, reject) => {
+            setTimeout(() =>{
+                // console.log(1);
+                resolve(1);
+            }, 1000)
+        }).then(res => {
+            console.log(res)//1
+            return new Promise((resolve, reject) => {//正常写
+                    setTimeout(() => {
+                        resolve(2);
+                    }, 1000);
+                });
+        }).then(res => {
+            console.log(res);//2
+            return Promise.resolve(3);//简写
+        }).then(res => {
+            console.log(res);//3
+            return 4//在简写
+        }).then(res => {
+            console.log(res); //4
+        })
+
+
+        //1.正常代码是按照顺序往下执行
+        //2.如果遇到耗时的阻塞需要异步执行  用promise
+        new Promise((resolve, reject) => {
+            const data = "Hello Promise";
+            const message = "失败";
+            setTimeout(() => {
+                // resolve(data);
+                reject(message);
+            },1000);
+        }).then((data) => {
+            console.log(data);
+        }).catch((message) => {
+            console.log(message);
+        })
+
+        //除了then().catch()的写法外还有一种写法
+        new Promise((resolve, reject) => {
+            const data = "Hello Promise";
+            const message = "失败";
+            setTimeout(() => {
+                // resolve(data);
+                reject(message);
+            },1000);
+        }).then(data => {
+            console.log(data);
+        }, err => {
+            console.log(err)
+        })
+    </script>
+</body>
+</html>
