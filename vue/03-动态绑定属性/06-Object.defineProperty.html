@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.defineProperty</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    //第一种写法：直接定义属性
+    const person1 = {
+        name: '拓成辉',
+        sex: '男',
+        age: 30
+    }
+    console.log('person1--', person1);//{name: "拓成辉", sex: "男", age: 30}
+    //第二种写法：用Object.defineProperty来定义属性
+    const person2 = {
+        name: '拓成辉',
+        sex: '男',
+    }
+    Object.defineProperty(person2, 'age', {
+        value: 30
+    })
+    console.log('person2--', person2);//{name: "拓成辉", sex: "男", age: 30}但是age是灰色的,是不可以枚举的(遍历)
+    console.log(Object.keys(person2));// ["name", "sex"]
+    //在第二中写法的基础上解决不可枚举问题
+    const person3 = {
+        name: '拓成辉',
+        sex: '男'
+    }
+    Object.defineProperty(person3, 'age', {
+        value: 30,
+        enumerable: true//enumberable是控制定义的属性是否可以参与枚举（遍历）;默认是false,不参与
+    })
+    console.log(Object.keys(person3));//["name", "sex", "age"]
+    //在第二种写法的基础上解决不可修改属性值的问题
+    const person4 = {
+        name: '拓成辉',
+        sex: '男'
+    }
+    Object.defineProperty(person4, 'age', {
+        value: 30,
+        enumerable: true,
+        writable: true//writable是控制属性值是否可以被修改，默认是false,不可以修改
+    })
+    person4.age = 18;
+    console.log(Object.keys(person4));//["name", "sex", "age"]
+    console.log('person4--', person4);//{name: "拓成辉", sex: "男", age: 18}
+    //在第二种写法的基础上解决不可删除属性的问题
+    const person5 = {
+        name: '拓成辉',
+        sex: '男'
+    }
+    Object.defineProperty(person5, 'age', {
+        value: 30,
+        enumerable: true,
+        writable: true,
+        configurable: true//configurable是控制是否可以删除属性的值， 默认是false, 不可删除
+    })
+    delete person5.age
+    console.log(Object.keys(person5));//["name", "sex"]
+    console.log('person5--', person5);//{name: "拓成辉", sex: "男"}
+
+
+    let number1 = 30;
+    let person6 = {
+        name: '拓成辉',
+        sex: '男',
+        age: number1
+    }
+    number1 = 18;
+    console.log('person6--', person6);//{name: "拓成辉", sex: "男", age: 30}
+    //用Object.defineProperty
+    let number2 = 30;
+    let person7 = {
+        name: '拓成辉',
+        sex: '男'
+    }
+    Object.defineProperty(person7, 'age', {
+        get: function() {
+            console.log('有人获取age属性')
+            return number2;
+        },
+        set(value) {
+            console.log(value);
+            number2 = value;
+        }
+    })
+    number2 = 18;
+    console.log('person7--', person7);//name: "拓成辉"sex: "男"age: (...)  点击...后才会触发get(getter)和set(setter)方法
+</script>
+</html>
